@@ -2,12 +2,42 @@
   "name": "@aionx/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "packageManager": "pnpm@8.0.0",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
+    "commitlint": "commitlint --config commitlint.config.js -e -V",
+    "lint-staged": "lint-staged"
+  },
   "private": true,
-  "dependencies": {},
   "devDependencies": {
+    "@commitlint/cli": "^18.4.4",
+    "@commitlint/config-conventional": "^18.4.4",
     "@nx/js": "17.2.8",
     "@nx/workspace": "17.2.8",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.0",
     "nx": "17.2.8"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "husky": {
+      "hooks": {
+        "prepare-commit-msg": "exec < /dev/tty && pnpm cz --hook || true"
+      }
+    }
+  },
+  "lint-staged": {
+    "./packages/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "echo 'linting...'"
+    ]
   }
 }

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "lint-staged 执行提交代码格式与规范检查"
+pnpm lint-staged
