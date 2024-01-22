@@ -13,7 +13,8 @@
         "@next/next/no-html-link-for-pages": [
           "error",
           "packages/apps/admin-app/pages"
-        ]
+        ],
+        "@typescript-eslint/no-explicit-any": "warn"
       }
     },
     {
