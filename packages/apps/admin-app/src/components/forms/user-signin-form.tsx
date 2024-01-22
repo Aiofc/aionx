@@ -14,8 +14,8 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import GitHubSignInButton from '../github-auth-button';
-// import { signIn } from 'next-auth/react';
-// import { useRouter, useSearchParams } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const formSchema = z.object({
   email: z.string().email({ message: '请输入规范的邮箱地址' }),
@@ -24,9 +24,9 @@ const formSchema = z.object({
 type UserFormValue = z.infer<typeof formSchema>;
 
 export default function UserSignInForm() {
-  // const router = useRouter();
-  // const searchParams = useSearchParams();
-  // const callbackUrl = searchParams.get('callbackUrl');
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl');
   const [loading, setLoading] = useState(false);
   const defaultValues = {
     email: 'demo@gmail.com',
@@ -41,9 +41,18 @@ export default function UserSignInForm() {
   const onSubmit = async (data: UserFormValue) => {
     setLoading(true);
     // 登录请求
-
+    const signInData = await signIn('credentials', {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
     setLoading(false);
     // 判断状态
+    if (signInData?.error) {
+      console.log('登录失败', signInData.error);
+    } else if (signInData?.ok && signInData.status === 200) {
+      router.push(callbackUrl? callbackUrl : '/dashboard')
+    }
   };
 
   return (
