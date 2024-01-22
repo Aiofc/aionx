@@ -6,5 +6,6 @@
     "lucide",
     "preinstall",
     "tailwindcss"
-  ]
+  ],
+  "WillLuke.nextjs.hasPrompted": true
 }
