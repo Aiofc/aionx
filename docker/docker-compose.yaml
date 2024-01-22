@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  aionx-admin:
+    image: postgres:15
+    container_name: aionx-admin
+    restart: always
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env.admin
+    volumes:
+      - postgres-admin:/var/lib/postgresql/data
+
+  aionx-kcms:
+    image: postgres:15
+    container_name: aionx-kcms
+    restart: always
+    ports:
+      - '5433:5432'
+    env_file:
+      - .env.kcms
+    volumes:
+      - postgres-kcms:/var/lib/postgresql/data
+
+volumes:
+  postgres-admin:
+    name: aionx-admin-db
+  postgres-kcms:
+    name: aionx-kcms-db
+
