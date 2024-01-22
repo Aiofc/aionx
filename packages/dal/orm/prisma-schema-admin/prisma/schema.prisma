@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+  // output into a separate subdirectory so multiple schemas can be used in a monorepo
+  // this make the import path `@prisma/client/one` instead of `@prisma/client`
+  // Customize to make the most sense for your project
+  output   = "../../../../../node_modules/@prisma/client/admin"
+}
+
+datasource db {
+  // using sqlite for the ease of use
+  // feel free to use any other supported database
+  // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#fields
+  provider = "postgresql"
+  url      = env("DATABASE_ADMIN_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String   @unique
+  username  String
+  password  String
+}

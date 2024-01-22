@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@aionx/aionx-ui": ["packages/libs/aionx-ui/src/index.ts"]
+      "@aionx/aionx-ui": ["packages/libs/aionx-ui/src/index.ts"],
+      "@aionx/prisma-schema-admin": [
+        "packages/dal/orm/prisma-schema-admin/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
