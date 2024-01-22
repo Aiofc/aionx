@@ -1,3 +1,4 @@
+import { AionxUi } from "@aionx/aionx-ui";
 
 export default async function Index() {
   /*
@@ -6,6 +7,8 @@ export default async function Index() {
    * Note: The corresponding styles are in the ./index.css file.
    */
   return (
-  <div className=' text-center text-blue-800'>hello word</div>
+    <div className=' text-center text-blue-800'>
+      <AionxUi/>
+  </div>
   );
 }
