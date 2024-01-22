@@ -1,5 +1,6 @@
 const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
+const shadcnPreset = require('../../../tailwind-plugins/shadcn-preset');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -10,8 +11,6 @@ module.exports = {
     ),
     ...createGlobPatternsForDependencies(__dirname),
   ],
-  theme: {
-    extend: {},
-  },
+  presets: [shadcnPreset],
   plugins: [],
 };
