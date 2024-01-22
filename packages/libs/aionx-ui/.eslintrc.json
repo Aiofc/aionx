@@ -4,7 +4,11 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-empty-interface": "warn",
+        "@typescript-eslint/consistent-type-definitions": "warn",
+        "@typescript-eslint/array-type": "warn"
+      }
     },
     {
       "files": ["*.ts", "*.tsx"],
