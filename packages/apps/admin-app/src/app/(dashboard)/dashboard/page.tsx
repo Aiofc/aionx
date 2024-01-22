@@ -1,5 +1,6 @@
 import React from 'react';
 import { Ghost } from 'lucide-react';
+import ForTest from '../../../components/for-test';
 
 export default function DashboardPage() {
   return (
@@ -11,6 +12,7 @@ export default function DashboardPage() {
         </h2>
         <Ghost />
       </div>
+    <ForTest />
     </>
   );
 }

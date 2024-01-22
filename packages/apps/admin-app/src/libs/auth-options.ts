@@ -1,6 +1,8 @@
 import { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import CredentialProvider from 'next-auth/providers/credentials';
+import { db } from '../db';
+import { compare, hash } from 'bcrypt';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -14,13 +16,31 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'password', type: 'password' },
       },
       async authorize(credentials, req) {
-        const user = { id: "1", name: 'admin', email: 'demo@gmail.com', password: '12345678' };
-        const passwordIsValid = (credentials?.password === user.password) && (credentials?.email === user.email);
+        const user = await db.user.findUnique({
+          where: { email: credentials?.email },
+        });
+        console.log(user);
+        const bcryptSaltRounds = Number.isInteger(Number(10)) ? Number(10) : 10;
+
+        function validatePassword(password: string, hashedPassword: string) {
+          return compare(password, hashedPassword);
+        }
+        function hashPassword(password: string) {
+          return hash(password, bcryptSaltRounds);
+        }
+
+        const hashedPassword = hashPassword(credentials?.password as string);
+        const passwordIsValid = await validatePassword(
+          credentials?.password as string,
+          await hashedPassword
+        );
+
         if (passwordIsValid) {
           return user;
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           return null;
+
           // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
