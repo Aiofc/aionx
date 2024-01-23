@@ -24,7 +24,9 @@
     }
   },
   "lint-staged": {
-    "./packages/**/*.{js,jsx,ts,tsx,json,css,scss,md}": []
+    "./packages/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "nx run-many --targets=lint --verbose"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -37,7 +39,6 @@
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/mercurius": "^12.0.11",
     "@nestjs/passport": "^10.0.3",
-    "@nestjs/platform-express": "^10.0.2",
     "@nestjs/platform-fastify": "^10.3.0",
     "@nestjs/swagger": "^7.2.0",
     "@prisma/client": "^5.8.1",

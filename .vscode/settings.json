@@ -3,10 +3,18 @@
     "aionx",
     "clsx",
     "commitlint",
+    "fastify",
+    "hookform",
     "kcms",
     "lucide",
+    "mercurius",
+    "mercuriusjs",
+    "nestjs",
+    "pmmmwh",
     "preinstall",
-    "tailwindcss"
+    "svgr",
+    "tailwindcss",
+    "tanstack"
   ],
   "WillLuke.nextjs.hasPrompted": true
 }
