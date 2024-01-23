@@ -1,0 +1,25 @@
+{
+  "name": "biz-chat-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/apps/biz-chat-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/apps/biz-chat-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "biz-chat:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "biz-chat:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["biz-chat"]
+}
