@@ -1,0 +1,29 @@
+{
+  "name": "prisma-client-kcms",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/dal/services/prisma-client-kcms/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/dal/services/prisma-client-kcms",
+        "main": "packages/dal/services/prisma-client-kcms/src/index.ts",
+        "tsConfig": "packages/dal/services/prisma-client-kcms/tsconfig.lib.json",
+        "assets": ["packages/dal/services/prisma-client-kcms/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/dal/services/prisma-client-kcms/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,29 @@
+{
+  "name": "prisma-client-admin",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/dal/services/prisma-client-admin/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/dal/services/prisma-client-admin",
+        "main": "packages/dal/services/prisma-client-admin/src/index.ts",
+        "tsConfig": "packages/dal/services/prisma-client-admin/tsconfig.lib.json",
+        "assets": ["packages/dal/services/prisma-client-admin/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/dal/services/prisma-client-admin/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

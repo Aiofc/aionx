@@ -1,0 +1,29 @@
+{
+  "name": "data-access-admin",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/dal/services/data-access-admin/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/dal/services/data-access-admin",
+        "main": "packages/dal/services/data-access-admin/src/index.ts",
+        "tsConfig": "packages/dal/services/data-access-admin/tsconfig.lib.json",
+        "assets": ["packages/dal/services/data-access-admin/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/dal/services/data-access-admin/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
