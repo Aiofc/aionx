@@ -1,0 +1,46 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""The user model"""
+type User {
+  id: ID!
+  email: String!
+  username: String!
+  password: String!
+}
+
+type Auth {
+  """JWT access token"""
+  accessToken: JWT!
+
+  """JWT refresh token"""
+  refreshToken: JWT!
+}
+
+"""
+A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
+"""
+scalar JWT
+
+type Query {
+  users: [User!]!
+  user(id: String!): User!
+}
+
+type Mutation {
+  addUser(data: CreateUserDto!): User!
+  signup(data: SignupInput!): Auth!
+}
+
+input CreateUserDto {
+  email: String!
+  username: String!
+  password: String!
+}
+
+input SignupInput {
+  email: String!
+  username: String!
+  password: String!
+}

@@ -15,7 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@aionx/aionx-ui": ["packages/libs/aionx-ui/src/index.ts"]
+      "@aionx/aionx-ui": ["packages/libs/aionx-ui/src/index.ts"],
+      "@aionx/data-access-admin": [
+        "packages/dal/services/data-access-admin/src/index.ts"
+      ],
+      "@aionx/data-access-kcms": [
+        "packages/dal/services/data-access-kcms/src/index.ts"
+      ],
+      "@aionx/prisma-client-admin": [
+        "packages/dal/services/prisma-client-admin/src/index.ts"
+      ],
+      "@aionx/prisma-client-kcms": [
+        "packages/dal/services/prisma-client-kcms/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
