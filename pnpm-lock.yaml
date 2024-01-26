@@ -8,15 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@fortaine/fetch-event-source':
+        specifier: ^3.0.6
+        version: 3.0.6
       '@hookform/resolvers':
         specifier: ^3.3.4
         version: 3.3.4(react-hook-form@7.49.3)
       '@mercuriusjs/gateway':
         specifier: ^2.2.0
         version: 2.2.0
-      '@microsoft/fetch-event-source':
-        specifier: ^2.0.1
-        version: 2.0.1
       '@nestjs/common':
         specifier: ^10.0.2
         version: 10.3.0(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1)
@@ -101,6 +101,9 @@ importers:
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
+      eventsource-parser:
+        specifier: ^1.1.1
+        version: 1.1.1
       graphql-scalars:
         specifier: ^1.22.4
         version: 1.22.4(graphql@16.8.1)
@@ -2099,6 +2102,11 @@ packages:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
     dev: false
 
+  /@fortaine/fetch-event-source@3.0.6:
+    resolution: {integrity: sha512-621GAuLMvKtyZQ3IA6nlDWhV1V/7PGOTNIGLUifxt0KzM+dZIweJ6F3XvQF3QnqeNfS1N7WQ0Kil1Di/lhChEw==}
+    engines: {node: '>=16.15'}
+    dev: false
+
   /@graphql-tools/merge@9.0.0(graphql@16.8.1):
     resolution: {integrity: sha512-J7/xqjkGTTwOJmaJQJ2C+VDBDOWJL3lKrHJN4yMaRLAJH3PosB7GiPRaSDZdErs0+F77sH2MKs2haMMkywzx7Q==}
     engines: {node: '>=16.0.0'}
@@ -2514,10 +2522,6 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
-    dev: false
-
-  /@microsoft/fetch-event-source@2.0.1:
-    resolution: {integrity: sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==}
     dev: false
 
   /@nestjs/common@10.3.0(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.1.14)(rxjs@7.8.1):
@@ -8663,6 +8667,11 @@ packages:
   /events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
+
+  /eventsource-parser@1.1.1:
+    resolution: {integrity: sha512-3Ej2iLj6ZnX+5CMxqyUb8syl9yVZwcwm8IIMrOJlF7I51zxOOrRlU3zxSb/6hFbl03ts1ZxHAGJdWLZOLyKG7w==}
+    engines: {node: '>=14.18'}
+    dev: false
 
   /execa@4.1.0:
     resolution: {integrity: sha512-j5W0//W7f8UxAn8hXVnwG8tLwdiUy4FJLcSupCg6maBYZDpyBvTApK7KyuI4bKj8KOh1r2YH+6ucuYtJv1bTZA==}

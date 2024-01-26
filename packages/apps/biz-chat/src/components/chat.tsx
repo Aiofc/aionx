@@ -5,11 +5,12 @@ import * as z from 'zod';
 import {
   fetchEventSource,
   EventStreamContentType,
-} from '@microsoft/fetch-event-source';
-import { set, useForm } from 'react-hook-form';
+} from '@fortaine/fetch-event-source';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@aionx/aionx-ui';
 import { Markdown } from './markdown';
+import chatService from '../utils/chat-service';
 
 const Schema = z.object({ query: z.string().min(1) });
 
@@ -23,6 +24,12 @@ export default function _Chat() {
     },
   });
 
+  chatService.actions = {
+    onCompleting: (sug) => setMessage(sug),
+  };
+
+  const decoder = new TextDecoder('utf-8');
+
   let remainText = '';
 
   const [message, setMessage] = useState('');
@@ -30,22 +37,14 @@ export default function _Chat() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const onSubmit = async ({ query }: z.infer<typeof Schema>) => {
-    await fetchEventSource(`https://aishell.work/v1/chat/completions`, {
+    await fetchEventSource(`/api/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization:
-          'Bearer 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',
       },
-      body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
-        stream: true,
-        messages: [
-          { role: 'system', content: 'Hello, how are you?' },
-          { role: 'user', content: query },
-        ],
-      }),
+      body: JSON.stringify({ query }),
       async onopen(response) {
+        console.log(response.headers.get('content-type'));
         if (
           response.ok &&
           response.headers.get('content-type') === EventStreamContentType
@@ -74,6 +73,7 @@ export default function _Chat() {
         throw new Error(err);
       },
       async onmessage(event) {
+        console.log('adsfadsfasdf');
         if (event.data === '[DONE]') {
           return;
         }
@@ -151,12 +151,35 @@ export default function _Chat() {
         }}
       >
         _Chat
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        {/* <form onSubmit={form.handleSubmit(onSubmit)}>
           <Button className="ml-auto" type="submit">
             按钮
           </Button>
         </form>
+        <Markdown content={message} /> */}
+      </div>
+
+      <div>
+        <Button
+          onClick={async () => {
+            await chatService.getStream({
+              url: '/api/chat',
+              question: '',
+            });
+          }}
+        >
+          按钮
+        </Button>
         <Markdown content={message} />
+      </div>
+      <div>
+        <Button
+          onClick={() => {
+            chatService.cancel();
+          }}
+        >
+          停止
+        </Button>
       </div>
     </div>
   );
